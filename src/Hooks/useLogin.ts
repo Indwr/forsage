@@ -17,7 +17,7 @@ export const useLogin = () => {
       localStorage.setItem("isPreview", res?.data?.data?.isPreview);
 
       toast.success(res?.data?.statusMessage);
-      window.location.href = '/dashboard'
+      window.location.href = "/dashboard";
       // navigate("/dashboard");
     },
 

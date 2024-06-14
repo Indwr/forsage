@@ -49,9 +49,8 @@ export const Navbar = () => {
     getCurrentWalletConnected();
   }, []);
 
-
   console.log("isPreview", isPreview);
-  const { isPending,handleSubmit } = useLogin();
+  const { isPending, handleSubmit } = useLogin();
 
   return (
     <div className="fixed top-0 left-1/2 -translate-x-1/2 flex justify-center w-full px-10 py-2.5 z-40 lg:p-0 lg:max-h-screen z-999999">
@@ -65,27 +64,30 @@ export const Navbar = () => {
             <div className="flex justify-between items-center rounded-mini max-w-desktop-preview-bar w-full bg-main-blue px-5 py-2 shadow-preview-bar lg:pl-10 sm:pl-5 lg:py-2.5 lg:rounded-none lg:rounded-b-mini lg:pr-0 false">
               <div className="flex w-full overflow-hidden items-center justify-between space-x-2.5 lg:items-start">
                 <div className="w-full flex justify-start items-center space-x-5 lg:flex-col lg:h-full lg:items-start lg:space-x-0 lg:space-y-7.5">
-                <form onSubmit={(e) => handleSubmit(e, "id")}>
-                  <div className="flex items-center false lg:w-full lg:pr-10 sm:pr-5">
-                    <Logo src={LogoGreen} />
-                 
-                    <span className="text-base text-white whitespace-nowrap mr-5 notranslate lg:mr-0 false">
-                      Preview ID
-                      <span className="hidden lg:inline ml-1.5">1</span>
-                    </span>
-                    <div className="flex justify-between items-center space-x-2.5 lg:space-x-5 lg:w-full lg:hidden">
-                      <input name="address" className="px-4 py-3 rounded-mini leading-5 bg-white-100 text-white text-base outline-none false" />
-                      <button className="flex justify-center items-center text-center text-base font-bold text-white rounded-mini sm:text-sm outline-none bg-white-100 py-3 px-5">
-                      {isPending ? (
-                        <CircularProgress
-                          sx={{ scale: ".5", color: "white" }}
+                  <form onSubmit={(e) => handleSubmit(e, "id")}>
+                    <div className="flex items-center false lg:w-full lg:pr-10 sm:pr-5">
+                      <Logo src={LogoGreen} />
+
+                      <span className="text-base text-white whitespace-nowrap mr-5 notranslate lg:mr-0 false">
+                        Preview ID
+                        <span className="hidden lg:inline ml-1.5">1</span>
+                      </span>
+                      <div className="flex justify-between items-center space-x-2.5 lg:space-x-5 lg:w-full lg:hidden">
+                        <input
+                          name="address"
+                          className="px-4 py-3 rounded-mini leading-5 bg-white-100 text-white text-base outline-none false"
                         />
-                      ) : (
-                        "Go"
-                      )}
-                      </button>
+                        <button className="flex justify-center items-center text-center text-base font-bold text-white rounded-mini sm:text-sm outline-none bg-white-100 py-3 px-5">
+                          {isPending ? (
+                            <CircularProgress
+                              sx={{ scale: ".5", color: "white" }}
+                            />
+                          ) : (
+                            "Go"
+                          )}
+                        </button>
+                      </div>
                     </div>
-                  </div>
                   </form>
                 </div>
                 <NavLink

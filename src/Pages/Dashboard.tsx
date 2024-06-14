@@ -38,7 +38,7 @@ const Dashboard = () => {
 
     const response = await fetch(
       `${API_URL}api/v1/latestTransactions`,
-      requestOptions
+      requestOptions,
     );
     const result = await response.json();
     setTransactions(result?.result[0]?.data?.result);
@@ -479,7 +479,7 @@ const Dashboard = () => {
                 </span>
               </div>
               <span className="text-white text-2xl font-bold justify-end text-right notranslate sm:text-xl">
-              {dashboardData?.MatrixSum} USDT
+                {dashboardData?.MatrixSum} USDT
               </span>
             </div>
             <div className="flex justify-between h-full w-full">
@@ -547,7 +547,7 @@ const Dashboard = () => {
                 </span>
               </div>
               <span className="text-white text-2xl font-bold justify-end text-right notranslate sm:text-xl">
-              {dashboardData?.totalWorkingSum} USDT
+                {dashboardData?.totalWorkingSum} USDT
               </span>
             </div>
             <div className="flex justify-between h-full w-full">

@@ -5,6 +5,7 @@ import App from "./App";
 import "src/Styles/tailwind.scss";
 import "src/Styles/pagination.scss";
 import "animate.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 import ContextProviders from "./Contexts/ContextProviders";
 

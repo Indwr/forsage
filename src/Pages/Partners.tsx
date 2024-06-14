@@ -1,4 +1,25 @@
+import { CircularProgress, Pagination } from "@mui/material";
+import { useState } from "react";
+import { usePartners } from "src/Hooks/usePartners";
+import { useStore } from "src/Store/Store";
+import Dropdown from "react-bootstrap/Dropdown";
+
 const Partners = () => {
+  const [amount, setAmount] = useState("");
+
+  const changeAmount = (amt: string) => setAmount(amt);
+
+  const { data, isPending, handleChangePage } = usePartners(amount);
+
+  const { page, pageCount } = useStore((state) => state);
+
+  if (isPending)
+    return (
+      <div className="h-100 flex justify-center align-middle">
+        <CircularProgress sx={{ scale: ".8", color: "white" }} />;
+      </div>
+    );
+
   return (
     <main className="flex flex-1 w-full">
       <div className="flex flex-col w-full space-y-10 sm:space-y-7.5">
@@ -17,23 +38,52 @@ const Partners = () => {
                 ID 1
               </a>
             </div>
-            <div className="flex items-center ml-7.5 cursor-pointer">
-              <div className="flex items-center rounded px-2.5 py-1 bg-main-blue-200">
-                <svg
-                  className="w-5 h-5 fill-current mr-1.5 text-main-blue"
-                  viewBox="0 0 24 24"
-                  fill="#406AFF"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path d="M5.5 5h13a1 1 0 0 1 .5 1.5L14 12v7l-4-3v-4L5 6.5A1 1 0 0 1 5.5 5Z"></path>
-                </svg>
-                <span className="text-base leading-6 text-main-blue">
+
+            <div className="flex relative items-center ml-7.5 cursor-pointer">
+              <Dropdown>
+                <Dropdown.Toggle variant="success" id="dropdown-basic">
                   Filters
-                </span>
-              </div>
+                  {/* <div className="flex items-center rounded px-2.5 py-1 bg-main-blue-200">
+                    <svg
+                      className="w-5 h-5 fill-current mr-1.5 text-main-blue"
+                      viewBox="0 0 24 24"
+                      fill="#406AFF"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M5.5 5h13a1 1 0 0 1 .5 1.5L14 12v7l-4-3v-4L5 6.5A1 1 0 0 1 5.5 5Z"></path>
+                    </svg>
+                    <span className="text-base leading-6 text-main-blue">
+                      Filters
+                    </span>
+                  </div> */}
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu>
+                  <Dropdown.Item onClick={() => changeAmount("20")}>
+                    20
+                  </Dropdown.Item>
+
+                  <Dropdown.Item onClick={() => changeAmount("50")}>
+                    50
+                  </Dropdown.Item>
+
+                  <Dropdown.Item onClick={() => changeAmount("100")}>
+                    100
+                  </Dropdown.Item>
+
+                  <Dropdown.Item onClick={() => changeAmount("200")}>
+                    200
+                  </Dropdown.Item>
+
+                  <Dropdown.Item onClick={() => changeAmount("500")}>
+                    500
+                  </Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
             </div>
           </div>
         </div>
+
         <div className="flex flex-col">
           <div className="flex flex-col mb-5 w-full">
             <div className="flex-1 sm:rounded-none z-10 flex w-full flex-col bg-black-light rounded overflow-hidden h-full min-h-90 sm:max-h-3/4">
@@ -43,8 +93,8 @@ const Partners = () => {
                     <tr className="text-white-500 text-xs font-normal border-b border-white-100">
                       <th className="cursor-pointer p-6 xl:p-4 lg:p-6 lg:px-3 text-left">
                         <div className="whitespace-nowrap flex items-center notranslate">
-                          Date
-                          <div className="flex flex-col ml-[4px]">
+                          Joining Date
+                          {/* <div className="flex flex-col ml-[4px]">
                             <svg
                               className=""
                               width="4"
@@ -65,291 +115,36 @@ const Partners = () => {
                             >
                               <path d="M1 5h2a1 1 0 0 0 .923-1.385l-1-2.4c-.342-.82-1.504-.82-1.846 0l-1 2.4A1 1 0 0 0 1 5Z"></path>
                             </svg>
-                          </div>
+                          </div> */}
                         </div>
                       </th>
+
                       <th className=" p-6 xl:p-4 lg:p-6 lg:px-3 text-left">
                         <div className="whitespace-nowrap flex items-center notranslate">
-                          Address
+                          USER ID
                         </div>
                       </th>
+
                       <th className=" p-6 xl:p-4 lg:p-6 lg:px-3 text-left">
                         <div className="whitespace-nowrap flex items-center notranslate">
-                          <span className="notranslate">ID</span>
+                          <span className="notranslate">Address</span>
                         </div>
                       </th>
+
                       <th className="cursor-pointer p-6 xl:p-4 lg:p-6 lg:px-3 text-center">
                         <div className="whitespace-nowrap flex items-center notranslate">
-                          <span className="notranslate">x3</span>
-                          <div className="flex flex-col ml-[4px]">
-                            <svg
-                              className=""
-                              width="4"
-                              height="5"
-                              fill="#D9D9D9"
-                              opacity=".5"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <path d="M1 5h2a1 1 0 0 0 .923-1.385l-1-2.4c-.342-.82-1.504-.82-1.846 0l-1 2.4A1 1 0 0 0 1 5Z"></path>
-                            </svg>
-                            <svg
-                              className="rotate-180 mt-[2px] "
-                              width="4"
-                              height="5"
-                              fill="#D9D9D9"
-                              opacity=".5"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <path d="M1 5h2a1 1 0 0 0 .923-1.385l-1-2.4c-.342-.82-1.504-.82-1.846 0l-1 2.4A1 1 0 0 0 1 5Z"></path>
-                            </svg>
-                          </div>
+                          <span className="notranslate">Toal USDT Package</span>
                         </div>
                       </th>
+
                       <th className="cursor-pointer p-6 xl:p-4 lg:p-6 lg:px-3 text-center">
                         <div className="whitespace-nowrap flex items-center notranslate">
-                          <span className="notranslate">x4</span>
-                          <div className="flex flex-col ml-[4px]">
-                            <svg
-                              className=""
-                              width="4"
-                              height="5"
-                              fill="#D9D9D9"
-                              opacity=".5"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <path d="M1 5h2a1 1 0 0 0 .923-1.385l-1-2.4c-.342-.82-1.504-.82-1.846 0l-1 2.4A1 1 0 0 0 1 5Z"></path>
-                            </svg>
-                            <svg
-                              className="rotate-180 mt-[2px] "
-                              width="4"
-                              height="5"
-                              fill="#D9D9D9"
-                              opacity=".5"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <path d="M1 5h2a1 1 0 0 0 .923-1.385l-1-2.4c-.342-.82-1.504-.82-1.846 0l-1 2.4A1 1 0 0 0 1 5Z"></path>
-                            </svg>
-                          </div>
-                        </div>
-                      </th>
-                      <th className="cursor-pointer p-6 xl:p-4 lg:p-6 lg:px-3 text-center">
-                        <div className="whitespace-nowrap flex items-center notranslate">
-                          <span className="notranslate">xXx</span>
-                          <div className="flex flex-col ml-[4px]">
-                            <svg
-                              className=""
-                              width="4"
-                              height="5"
-                              fill="#D9D9D9"
-                              opacity=".5"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <path d="M1 5h2a1 1 0 0 0 .923-1.385l-1-2.4c-.342-.82-1.504-.82-1.846 0l-1 2.4A1 1 0 0 0 1 5Z"></path>
-                            </svg>
-                            <svg
-                              className="rotate-180 mt-[2px] "
-                              width="4"
-                              height="5"
-                              fill="#D9D9D9"
-                              opacity=".5"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <path d="M1 5h2a1 1 0 0 0 .923-1.385l-1-2.4c-.342-.82-1.504-.82-1.846 0l-1 2.4A1 1 0 0 0 1 5Z"></path>
-                            </svg>
-                          </div>
-                        </div>
-                      </th>
-                      <th className="cursor-pointer p-6 xl:p-4 lg:p-6 lg:px-3 text-center">
-                        <div className="whitespace-nowrap flex items-center notranslate">
-                          <span className="notranslate">xGold</span>
-                          <div className="flex flex-col ml-[4px]">
-                            <svg
-                              className=""
-                              width="4"
-                              height="5"
-                              fill="#D9D9D9"
-                              opacity=".5"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <path d="M1 5h2a1 1 0 0 0 .923-1.385l-1-2.4c-.342-.82-1.504-.82-1.846 0l-1 2.4A1 1 0 0 0 1 5Z"></path>
-                            </svg>
-                            <svg
-                              className="rotate-180 mt-[2px] "
-                              width="4"
-                              height="5"
-                              fill="#D9D9D9"
-                              opacity=".5"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <path d="M1 5h2a1 1 0 0 0 .923-1.385l-1-2.4c-.342-.82-1.504-.82-1.846 0l-1 2.4A1 1 0 0 0 1 5Z"></path>
-                            </svg>
-                          </div>
-                        </div>
-                      </th>
-                      <th className="cursor-pointer p-6 xl:p-4 lg:p-6 lg:px-3 text-center">
-                        <div className="whitespace-nowrap flex items-center notranslate">
-                          <span className="notranslate">xQore</span>
-                          <div className="flex flex-col ml-[4px]">
-                            <svg
-                              className=""
-                              width="4"
-                              height="5"
-                              fill="#D9D9D9"
-                              opacity=".5"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <path d="M1 5h2a1 1 0 0 0 .923-1.385l-1-2.4c-.342-.82-1.504-.82-1.846 0l-1 2.4A1 1 0 0 0 1 5Z"></path>
-                            </svg>
-                            <svg
-                              className="rotate-180 mt-[2px] "
-                              width="4"
-                              height="5"
-                              fill="#D9D9D9"
-                              opacity=".5"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <path d="M1 5h2a1 1 0 0 0 .923-1.385l-1-2.4c-.342-.82-1.504-.82-1.846 0l-1 2.4A1 1 0 0 0 1 5Z"></path>
-                            </svg>
-                          </div>
-                        </div>
-                      </th>
-                      <th className="cursor-pointer p-6 xl:p-4 lg:p-6 lg:px-3 text-center">
-                        <div className="whitespace-nowrap flex items-center notranslate">
-                          <span className="notranslate">maxQore</span>
-                          <div className="flex flex-col ml-[4px]">
-                            <svg
-                              className=""
-                              width="4"
-                              height="5"
-                              fill="#D9D9D9"
-                              opacity=".5"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <path d="M1 5h2a1 1 0 0 0 .923-1.385l-1-2.4c-.342-.82-1.504-.82-1.846 0l-1 2.4A1 1 0 0 0 1 5Z"></path>
-                            </svg>
-                            <svg
-                              className="rotate-180 mt-[2px] "
-                              width="4"
-                              height="5"
-                              fill="#D9D9D9"
-                              opacity=".5"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <path d="M1 5h2a1 1 0 0 0 .923-1.385l-1-2.4c-.342-.82-1.504-.82-1.846 0l-1 2.4A1 1 0 0 0 1 5Z"></path>
-                            </svg>
-                          </div>
-                        </div>
-                      </th>
-                      <th className="cursor-pointer p-6 xl:p-4 lg:p-6 lg:px-3 text-right">
-                        <div className="whitespace-nowrap flex items-center notranslate">
-                          Profit BUSD
-                          <div className="flex flex-col ml-[4px]">
-                            <svg
-                              className=""
-                              width="4"
-                              height="5"
-                              fill="#D9D9D9"
-                              opacity=".5"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <path d="M1 5h2a1 1 0 0 0 .923-1.385l-1-2.4c-.342-.82-1.504-.82-1.846 0l-1 2.4A1 1 0 0 0 1 5Z"></path>
-                            </svg>
-                            <svg
-                              className="rotate-180 mt-[2px] "
-                              width="4"
-                              height="5"
-                              fill="#D9D9D9"
-                              opacity=".5"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <path d="M1 5h2a1 1 0 0 0 .923-1.385l-1-2.4c-.342-.82-1.504-.82-1.846 0l-1 2.4A1 1 0 0 0 1 5Z"></path>
-                            </svg>
-                          </div>
-                        </div>
-                      </th>
-                      <th className="cursor-pointer p-6 xl:p-4 lg:p-6 lg:px-3 text-right">
-                        <div className="whitespace-nowrap flex items-center notranslate">
-                          Profit BNB
-                          <div className="flex flex-col ml-[4px]">
-                            <svg
-                              className=""
-                              width="4"
-                              height="5"
-                              fill="#D9D9D9"
-                              opacity=".5"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <path d="M1 5h2a1 1 0 0 0 .923-1.385l-1-2.4c-.342-.82-1.504-.82-1.846 0l-1 2.4A1 1 0 0 0 1 5Z"></path>
-                            </svg>
-                            <svg
-                              className="rotate-180 mt-[2px] "
-                              width="4"
-                              height="5"
-                              fill="#D9D9D9"
-                              opacity=".5"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <path d="M1 5h2a1 1 0 0 0 .923-1.385l-1-2.4c-.342-.82-1.504-.82-1.846 0l-1 2.4A1 1 0 0 0 1 5Z"></path>
-                            </svg>
-                          </div>
-                        </div>
-                      </th>
-                      <th className="cursor-pointer p-6 xl:p-4 lg:p-6 lg:px-3 text-right">
-                        <div className="whitespace-nowrap flex items-center notranslate">
-                          New partners
-                          <div className="flex flex-col ml-[4px]">
-                            <svg
-                              className=""
-                              width="4"
-                              height="5"
-                              fill="#D9D9D9"
-                              opacity=".5"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <path d="M1 5h2a1 1 0 0 0 .923-1.385l-1-2.4c-.342-.82-1.504-.82-1.846 0l-1 2.4A1 1 0 0 0 1 5Z"></path>
-                            </svg>
-                            <svg
-                              className="rotate-180 mt-[2px] fill-[#FFE027] opacity-100"
-                              width="4"
-                              height="5"
-                              fill="#D9D9D9"
-                              opacity=".5"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <path d="M1 5h2a1 1 0 0 0 .923-1.385l-1-2.4c-.342-.82-1.504-.82-1.846 0l-1 2.4A1 1 0 0 0 1 5Z"></path>
-                            </svg>
-                          </div>
-                        </div>
-                      </th>
-                      <th className="cursor-pointer p-6 xl:p-4 lg:p-6 lg:px-3 text-right">
-                        <div className="whitespace-nowrap flex items-center notranslate">
-                          Partners
-                          <div className="flex flex-col ml-[4px]">
-                            <svg
-                              className=""
-                              width="4"
-                              height="5"
-                              fill="#D9D9D9"
-                              opacity=".5"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <path d="M1 5h2a1 1 0 0 0 .923-1.385l-1-2.4c-.342-.82-1.504-.82-1.846 0l-1 2.4A1 1 0 0 0 1 5Z"></path>
-                            </svg>
-                            <svg
-                              className="rotate-180 mt-[2px] "
-                              width="4"
-                              height="5"
-                              fill="#D9D9D9"
-                              opacity=".5"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <path d="M1 5h2a1 1 0 0 0 .923-1.385l-1-2.4c-.342-.82-1.504-.82-1.846 0l-1 2.4A1 1 0 0 0 1 5Z"></path>
-                            </svg>
-                          </div>
+                          <span className="notranslate">Topup Date</span>
                         </div>
                       </th>
                     </tr>
                   </thead>
+
                   <tbody className="text-gray-600 text-sm font-light">
                     <tr className="bg-green-100 border-b border-white-100 whitespace-nowrap last:border-b-0">
                       <td className="p-6 xl:p-4 lg:p-3 whitespace-nowrap notranslate text-left text-white-500 font-medium text-xs">
@@ -1185,7 +980,7 @@ const Partners = () => {
                   </tbody>
                 </table>
               </div>
-              <div className="flex p-4 sm:p-2.5">
+              {/* <div className="flex p-4 sm:p-2.5">
                 <button className="flex justify-center items-center text-center text-base font-bold text-white rounded-mini sm:text-sm outline-none px-5 py-3 bg-white-100 hover:bg-white-300 w-full rounded-mini flex justify-center items-center">
                   <svg
                     className="mr-2.5"
@@ -1202,7 +997,14 @@ const Partners = () => {
                   </svg>{" "}
                   <span>See more</span>
                 </button>
-              </div>
+              </div> */}
+              <Pagination
+                className={`mx-auto text-white`}
+                count={pageCount}
+                page={page + 1}
+                onChange={handleChangePage}
+                shape="rounded"
+              />
             </div>
           </div>
         </div>

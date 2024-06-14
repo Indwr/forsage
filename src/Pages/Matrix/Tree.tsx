@@ -23,7 +23,7 @@ const Tree = () => {
 
     const result = await fetch(
       `${API_URL}api/v1/tree?userId=${id}&packagee=${packageee}&cycle=${cycleee}`,
-      requestOptions
+      requestOptions,
     );
     const response = await result.json();
     if (response?.statusCode === 200) {
@@ -114,7 +114,7 @@ const Tree = () => {
                             <div className="flex w-full items-start justify-evenly mt-7.5 sm:mt-5 first:mt-0">
                               <div className="relative flex w-full justify-evenly items-start false false">
                                 <div className="flex flex-col justify-around items-center  w-full">
-                                <Circle data={tree[0]} />
+                                  <Circle data={tree[0]} />
                                   <div className="flex w-full items-start justify-evenly mt-7.5 sm:mt-5 first:mt-0">
                                     <div className="relative flex w-full justify-evenly items-start false false">
                                       <div className="flex flex-col justify-around items-center  w-full">

@@ -103,7 +103,7 @@ export const PackagesList = (data: any) => {
   const handleSubmit = async (
     price: any,
     uniqueId: any,
-    transactionHash: any
+    transactionHash: any,
   ) => {
     const raw = JSON.stringify({
       price: price,
@@ -126,7 +126,7 @@ export const PackagesList = (data: any) => {
 
     const result = await fetch(
       `${API_URL}api/v1/dashboard/submitWorking`,
-      requestOptions
+      requestOptions,
     );
     const response = await result.json();
 
@@ -160,7 +160,7 @@ export const PackagesList = (data: any) => {
     console.log("requestOptions", requestOptions);
     const result = await fetch(
       `${API_URL}api/v1/dashboard/checkLevelIncome`,
-      requestOptions
+      requestOptions,
     );
     const response = await result.json();
     const finalObject = {
@@ -192,7 +192,7 @@ export const PackagesList = (data: any) => {
     };
     const result = await fetch(
       `${API_URL}api/v1/dashboard/submitNonWorking`,
-      requestOptions
+      requestOptions,
     );
     const response = await result.json();
 

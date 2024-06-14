@@ -6,7 +6,7 @@ import { signupApi } from "src/Api/Signup";
 import { useNavigate } from "react-router-dom";
 
 export const useSignup = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const { walletAddress } = useStore((state) => state);
 
   const { mutate, isPending } = useMutation({

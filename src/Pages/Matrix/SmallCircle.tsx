@@ -1,7 +1,7 @@
 import { Link, useParams } from "react-router-dom";
 
 const SmallCircle = ({ data }: any) => {
-  const { cycle,packagee } = useParams();
+  const { cycle, packagee } = useParams();
   if (data?.userId) {
     return (
       <Link to={`/dashboard/tree/${data?.userId}/${cycle}/${packagee}`}>

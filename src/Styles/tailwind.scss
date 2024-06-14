@@ -15063,13 +15063,13 @@ video {
 
 .CircularProgressbar .CircularProgressbar-path {
   stroke: #3e98c7;
-  strokeLinecap: round;
+  strokelinecap: round;
   transition: stroke-dashoffset 0.5s ease 0s;
 }
 
 .CircularProgressbar .CircularProgressbar-trail {
   stroke: #d6d6d6;
-  strokeLinecap: round;
+  strokelinecap: round;
 }
 
 .CircularProgressbar .CircularProgressbar-text {

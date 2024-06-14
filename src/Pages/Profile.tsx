@@ -117,7 +117,6 @@ const Profile = () => {
                   </div>
                 </div>
               </form>
-             
             </div>
             <button
               type="submit"
@@ -126,7 +125,6 @@ const Profile = () => {
               Save changes
             </button>
           </main>
-     
         </div>
       </div>
     </div>

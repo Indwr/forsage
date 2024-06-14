@@ -1,8 +1,8 @@
 import { Link, useParams } from "react-router-dom";
 
 const Circle = ({ data }: any) => {
-  const { cycle,packagee } = useParams();
-  console.log('data',data)
+  const { cycle, packagee } = useParams();
+  console.log("data", data);
   if (data?.userId) {
     return (
       <Link to={`/dashboard/tree/${data?.userId}/${cycle}/${packagee}`}>

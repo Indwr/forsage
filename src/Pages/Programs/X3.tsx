@@ -5,7 +5,7 @@ import { useDashboard } from "src/Hooks/useDashboard";
 const X3 = () => {
   const [workingTreeData, setWorkingTreeData] = useState([]);
   const [totalPartners, setTotalPartners] = useState(0);
-  const { userInfo,dashboardData } = useDashboard();
+  const { userInfo, dashboardData } = useDashboard();
 
   const getWorkingTree = async () => {
     const token = localStorage.getItem("token");
@@ -22,7 +22,7 @@ const X3 = () => {
 
     const response = await fetch(
       `${API_URL}api/v1/team/workingList`,
-      requestOptions
+      requestOptions,
     );
     const result = await response.json();
     setWorkingTreeData(result?.packages);
@@ -191,9 +191,10 @@ const X3 = () => {
                   strokeLinejoin="round"
                 ></path>
               </svg>
-              <span className="text-base sm:text-sm">Total Partners {totalPartners}</span>
+              <span className="text-base sm:text-sm">
+                Total Partners {totalPartners}
+              </span>
             </div>
-            
           </div>
         </div>
       </div>
