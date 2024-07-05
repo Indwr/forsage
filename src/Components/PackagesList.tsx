@@ -27,7 +27,7 @@ export const PackagesList = (data: any) => {
       method: "eth_requestAccounts",
     });
 
-    if (accounts[0] !== user?.addresses?.ethAddress) {
+    if (accounts[0].toLowerCase() !== user?.addresses?.ethAddress.toLowerCase()) {
       toast.error("Please connect registered address");
       return;
     }
